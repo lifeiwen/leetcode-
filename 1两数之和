@@ -3,5 +3,18 @@
 code：
 def twoSum(self,nums,target):
   for i in nums:
-      j = target - i
-  
+      j = target - i    #获取另一个值
+      start_index = nums.index(i)  #获取i值的下边
+      next_index = start_index + 1  #下一个值的下标
+      temp_nums = nums[next_index:]  #新建一个array，除去i
+      if j in temp_nums:  #如果j在新array中
+          return(nums.index(i),next_index+temp_nums.index(j))
+          
+思路2：利用字典
+code:
+    dic = {} #新建一个字典
+    for i in range(len(nums)):   #i遍历index
+        if target - nums[i] not in dict:  #如果目标值减去nums[i]不在字典
+            dict[nums[i]] = i  #给字典复制
+        else:
+            return [dict[target-nums[i]],i]  #在字典中，返回
